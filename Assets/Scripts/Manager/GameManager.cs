@@ -33,10 +33,14 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
 
-	public void GameStart()
+    public void GameStart()
     {
 		blinder.Blind();
         if(sceneName == null)
